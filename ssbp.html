@@ -86,7 +86,7 @@
 
   function endHaircut() {
     let client = barberRoom.shift();
-    console.log(`The barber finishes cutting Client ${client.id}'s hair.`);
+    console.log(`The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`);
     if (waitingRoom.length > 0) {
       this.serveNextCustomer();
     } else {
