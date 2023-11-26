@@ -14,14 +14,14 @@
     <script>
 
     barberRoomCapacity = 1; //one barber per client
-    waitingRoomCapacity = 3; //3 chairs are offered in the waiting room
-    haircutCompletionTime = 6000; //2 seconds barber haircut completion time
-    clientInterval = 3000; // client comes in every 3 seconds
+    waitingRoomCapacity = 3; //3 chairs are offered in the waiting room. Can be modified for testing purposes.
+    haircutCompletionTime = 6000; //2 seconds barber haircut completion time. Can be modified for testing purposes.
+    clientInterval = 3000; // client comes in every 3 seconds. Can be modified for testing purposes.
     barberRoom = [];
     waitingRoom = [];
     barber = 'sleeping'; //barber status
     clientCount = 0; 
-    totalClient = 6; //total clients to be served
+    totalClient = 6; //total clients to be served. Can be modified for testing purposes.
 
   function initiateClient() { 
     clientCount++;
