@@ -33,15 +33,15 @@
     return { id: clientCount };
   }
 
-  function enterBarbershop(customer) {
-    document.querySelector('.display-clientEnters').innerHTML = `Client ${customer.id} enters the barbershop.`;
-    console.log(`Client ${customer.id} enters the barbershop.`);
+  function enterBarbershop(client) {
+    document.querySelector('.display-clientEnters').innerHTML = `Client ${client.id} enters the barbershop.`;
+    console.log(`Client ${client.id} enters the barbershop.`);
     if (barberRoom.length < barberRoomCapacity) {
-      enterBarberRoom(customer);
+      enterBarberRoom(client);
     } else if (this.waitingRoom.length < waitingRoomCapacity) {
-      enterWaitingRoom(customer);
+      enterWaitingRoom(client);
     } else {
-      leaveBarbershop(customer);
+      leaveBarbershop(client);
     }
   }
 
