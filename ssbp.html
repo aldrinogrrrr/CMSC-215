@@ -38,6 +38,22 @@
     clientCount = 0; 
     totalClient = 6; //total clients to be served. Can be modified for testing purposes.
 
+
+
+  function opensBarberShop() {
+    document.querySelector('.display-welcomeMessage').innerHTML = `Barber shop is now open.`;
+    document.querySelector('.display-clientEnters').innerHTML = `Waiting for a client to enter.`;
+    console.log('Barber shop is now open.');
+    simulationInterval = setInterval(() => {
+      let client = initiateClient();
+      if (client) {
+        enterBarbershop(client);
+      } else {
+        clearInterval(intervalId);
+      }
+    }, clientInterval);
+  }
+
   function initiateClient() { 
     clientCount++;
     if (clientCount > totalClient) {
@@ -123,20 +139,6 @@
     document.querySelector('.display-finishHaircut').innerHTML = `The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`;
     console.log('The barber is finish and goes to sleep.');
     barber = 'sleeping';
-  }
-
-  function opensBarberShop() {
-    document.querySelector('.display-welcomeMessage').innerHTML = `Barber shop is now open.`;
-    document.querySelector('.display-clientEnters').innerHTML = `Waiting for a client to enter.`;
-    console.log('Barber shop is now open.');
-    simulationInterval = setInterval(() => {
-      let client = initiateClient();
-      if (client) {
-        enterBarbershop(client);
-      } else {
-        clearInterval(intervalId);
-      }
-    }, clientInterval);
   }
 
 
