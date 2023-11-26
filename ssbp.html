@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-
+    <style>
+      .grid-container {
+        display: inline-grid;
+        grid-template-columns: 300px 300px 300px;
+        grid-gap: 10px; 
+      }
+      .display-clientEnters, .display-waitingRoom, .display-barberRoom {
+        border: 1px solid black;  
+        padding-top: 20px;
+        padding-left: 20px; 
+        padding-bottom: 20px;
+      }
+    </style>
   </head>
   <body>
-
+    
     <p class="display-welcomeMessage"></p>
-    <p class="display-clientEnters"></p>
-    <p class="display-waitingRoom"></p>
-    <p class="display-barberRoom"></p>
+    <div class="grid-container">
+      <div class="display-clientEnters"></div>
+      <div class="display-waitingRoom"></div>
+      <div class="display-barberRoom"></div>
+    </div>
     <p class="display-finishHaircut"></p>
     
 
@@ -90,13 +104,13 @@
     document.querySelector('.display-finishHaircut').innerHTML = `The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`;
     console.log(`The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`);
     if (waitingRoom.length > 0) {
-      this.serveNextCustomer();
+      this.serveNextClient();
     } else {
       barberSleeps();
     }
   }
 
-  function serveNextCustomer() {
+  function serveNextClient() {
     let client = this.waitingRoom.shift();
     console.log(`The barber goes to the waiting room and serves Client ${client.id}.`);
     enterBarberRoom(client);
@@ -113,6 +127,7 @@
 
   function opensBarberShop() {
     document.querySelector('.display-welcomeMessage').innerHTML = `Barber shop is now open.`;
+    document.querySelector('.display-clientEnters').innerHTML = `Waiting for a client to enter.`;
     console.log('Barber shop is now open.');
     simulationInterval = setInterval(() => {
       let client = initiateClient();
