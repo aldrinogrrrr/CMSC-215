@@ -19,11 +19,11 @@
     customerInterval = 3000; // customer comes in every 3 seconds
     barberRoom = [];
     waitingRoom = [];
-    barber = 'sleeping';
+    barber = 'sleeping'; //barber status
     customerCount = 0; 
     totalCustomer = 6; //total customers to be served
 
-  function createCustomer() {
+  function initiateClient() { //
     this.customerCount++;
     if (customerCount > totalCustomer) {
       console.log('All customers have been served.');
@@ -112,7 +112,7 @@
     document.querySelector('.display-welcomeMessage').innerHTML = `Barber shop is now open.`;
     console.log('Barber shop is now open.');
     simulationInterval = setInterval(() => {
-      let customer = createCustomer();
+      let customer = initiateClient();
       if (customer) {
         enterBarbershop(customer);
       } else {
