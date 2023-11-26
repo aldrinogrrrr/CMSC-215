@@ -13,17 +13,17 @@
 
     <script>
 
-    barberRoomCapacity = 1; //one barber per customer
+    barberRoomCapacity = 1; //one barber per client
     waitingRoomCapacity = 3; //3 chairs are offered in the waiting room
     haircutCompletionTime = 6000; //2 seconds barber haircut completion time
-    clientInterval = 3000; // customer comes in every 3 seconds
+    clientInterval = 3000; // client comes in every 3 seconds
     barberRoom = [];
     waitingRoom = [];
     barber = 'sleeping'; //barber status
     clientCount = 0; 
-    totalClient = 6; //total customers to be served
+    totalClient = 6; //total clients to be served
 
-  function initiateClient() { //
+  function initiateClient() { 
     clientCount++;
     if (clientCount > totalClient) {
       console.log('All clients have been served.');
@@ -45,10 +45,10 @@
     }
   }
 
-  function enterBarberRoom(customer) {
-    document.querySelector('.display-barberRoom').innerHTML = `Client ${customer.id} enters the barber room.`;
-    console.log(`Client ${customer.id} enters the barber room.`);
-    barberRoom.push(customer);
+  function enterBarberRoom(client) {
+    document.querySelector('.display-barberRoom').innerHTML = `Client ${client.id} enters the barber room.`;
+    console.log(`Client ${client.id} enters the barber room.`);
+    barberRoom.push(client);
     if (barber === 'sleeping') {
       wakeUpBarber();
     } else {
@@ -56,17 +56,17 @@
     }
   }
 
-  function enterWaitingRoom(customer) {
-    document.querySelector('.display-waitingRoom').innerHTML = `Client ${customer.id} enters the waiting room.`;
-    console.log(`Client ${customer.id} enters the waiting room.`);
-    waitingRoom.push(customer);
+  function enterWaitingRoom(client) {
+    document.querySelector('.display-waitingRoom').innerHTML = `Client ${client.id} enters the waiting room.`;
+    console.log(`Client ${client.id} enters the waiting room.`);
+    waitingRoom.push(client);
   }
 
-  function leaveBarbershop(customer) {
-    console.log(`Client ${customer.id} leaves.`);
+  function leaveBarbershop(client) {
+    console.log(`Client ${client.id} leaves.`);
     if (waitingRoom.length < waitingRoomCapacity) {
       console.log('Client ${customer.id} returns.');
-      enterWaitingRoom(customer);
+      enterWaitingRoom(client);
     }
   }
 
@@ -77,16 +77,16 @@
   }
 
   function initiateHaircut() {
-    let customer = barberRoom[0];
-    console.log(`The barber starts cutting Client ${customer.id}'s hair.`);
+    let client = barberRoom[0];
+    console.log(`The barber starts cutting Client ${client.id}'s hair.`);
     setTimeout(() => {
       endHaircut();
     }, haircutCompletionTime);
   }
 
   function endHaircut() {
-    let customer = barberRoom.shift();
-    console.log(`The barber finishes cutting Client ${customer.id}'s hair.`);
+    let client = barberRoom.shift();
+    console.log(`The barber finishes cutting Client ${client.id}'s hair.`);
     if (waitingRoom.length > 0) {
       this.serveNextCustomer();
     } else {
@@ -95,9 +95,9 @@
   }
 
   function serveNextCustomer() {
-    let customer = this.waitingRoom.shift();
-    console.log(`The barber goes to the waiting room and serves Client ${customer.id}.`);
-    enterBarberRoom(customer);
+    let client = this.waitingRoom.shift();
+    console.log(`The barber goes to the waiting room and serves Client ${client.id}.`);
+    enterBarberRoom(client);
   }
 
   function barberSleeps() {
@@ -112,9 +112,9 @@
     document.querySelector('.display-welcomeMessage').innerHTML = `Barber shop is now open.`;
     console.log('Barber shop is now open.');
     simulationInterval = setInterval(() => {
-      let customer = initiateClient();
-      if (customer) {
-        enterBarbershop(customer);
+      let client = initiateClient();
+      if (client) {
+        enterBarbershop(client);
       } else {
         clearInterval(intervalId);
       }
