@@ -9,6 +9,7 @@
     <p class="display-clientEnters"></p>
     <p class="display-waitingRoom"></p>
     <p class="display-barberRoom"></p>
+    <p class="display-finishHaircut"></p>
     
 
     <script>
@@ -86,6 +87,7 @@
 
   function endHaircut() {
     let client = barberRoom.shift();
+    document.querySelector('.display-finishHaircut').innerHTML = `The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`;
     console.log(`The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`);
     if (waitingRoom.length > 0) {
       this.serveNextCustomer();
@@ -104,6 +106,7 @@
     document.querySelector('.display-clientEnters').innerHTML = `No clients to serve. Barber goes back to sleep`;
     document.querySelector('.display-waitingRoom').innerHTML = ``;
     document.querySelector('.display-barberRoom').innerHTML = ``;
+    document.querySelector('.display-finishHaircut').innerHTML = `The barber finishes cutting Client ${client.id}'s hair. Client ${client.id} leaves the Barbershop`;
     console.log('The barber is finish and goes to sleep.');
     barber = 'sleeping';
   }
